@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 
 export default function EditAuthor() {
-    const router = useRouter
-    const { firebaseKey} = router.query
-       
+  const router = useRouter;
+  const { firebaseKey } = router.query;
 
-    return <div>New Author Here{firebaseKey}</div>;
+  return <div>New Author Here{firebaseKey}</div>;
 }
