@@ -10,7 +10,7 @@ function AuthorCard({ authorObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisAuthor = () => {
-    if (window.confirm(`Delete ${authorObj.title}?`)) {
+    if (window.confirm(`Delete ${authorObj.first_name}?`)) {
       deleteSingleAuthor(authorObj.firebaseKey).then(() => onUpdate());
     }
   };
@@ -28,7 +28,7 @@ function AuthorCard({ authorObj, onUpdate }) {
               <br />
             </span>
           )}{' '}
-          {authorObj.price}
+          {authorObj.email}
         </p>
         {/* DYNAMIC LINK TO VIEW THE AUTHOR DETAILS  */}
         <Link href={`/author/${authorObj.firebaseKey}`} passHref>
@@ -50,10 +50,10 @@ function AuthorCard({ authorObj, onUpdate }) {
 
 AuthorCard.propTypes = {
   authorObj: PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    sale: PropTypes.bool,
-    price: PropTypes.string,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    favorite: PropTypes.bool,
+    email: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
