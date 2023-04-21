@@ -41,11 +41,14 @@ function AuthorForm({ obj }) {
         .then(() => router.push(`/author/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createAuthor(payload).then(() => {
+      createAuthor(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+      updateAuthor(patchPayload).then(() => {
         router.push('/');
+        });
       });
     }
-  };
+  };;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -56,7 +59,7 @@ function AuthorForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter a First name"
-          name="First name"
+          name="first_name"
           value={formInput.first_name}
           onChange={handleChange}
           required
@@ -68,7 +71,7 @@ function AuthorForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Last Name"
-          name="Last Name"
+          name="last_name"
           value={formInput.last_name}
           onChange={handleChange}
           required
@@ -81,7 +84,7 @@ function AuthorForm({ obj }) {
           as="textarea"
           placeholder="Email"
           style={{ height: '100px' }}
-          name="Email"
+          name="email"
           value={formInput.email}
           onChange={handleChange}
           required
@@ -93,13 +96,13 @@ function AuthorForm({ obj }) {
         className="text-white mb-3"
         type="switch"
         id="Favorite"
-        name="Favorite"
+        name="favorite"
         label="Favorite?"
-        checked={formInput.Favorite}
+        checked={formInput.favorite}
         onChange={(e) => {
           setFormInput((prevState) => ({
             ...prevState,
-            sale: e.target.checked,
+            favorite: e.target.checked,
           }));
         }}
       />
