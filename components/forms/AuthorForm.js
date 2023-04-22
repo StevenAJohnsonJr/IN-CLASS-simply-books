@@ -43,12 +43,12 @@ function AuthorForm({ obj }) {
       const payload = { ...formInput, uid: user.uid };
       createAuthor(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-      updateAuthor(patchPayload).then(() => {
-        router.push('/');
+        updateAuthor(patchPayload).then(() => {
+          router.push('/');
         });
       });
     }
-  };;
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
